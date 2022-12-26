@@ -1,0 +1,17 @@
+# Constant spam from (valid) 'hacked' Gmail accounts. While Gmail closes the accounts upon reporting there is still a steady flow of these mails coming in.
+# The people behind the crypto/traderbot scam seem to be located in Russia.
+# Current flow:
+# Mail from Gmail address -> pdf -> hideuri.com/* -> tdsintegrations5.online -> random scam website.
+# Currently this rules checks if the mail comes from Gmail and if the mail contains a PDF with 'Softplicity' as author.
+# 
+# Wesley van Rossum <wesley@sernate.com>
+
+ifplugin Mail::SpamAssassin::Plugin::PDFInfo
+
+body __GMD_AUTHOR_MOBILE__       eval:pdf_match_details('author','/^Softplicity$/')
+header  __FROM_GMAIL__              From =~ /gmail\.com/i
+describe  BLOCK_PDF_TRADERBOT_GMAIL_SPAM Valid Gmail account traderbot/crypto scam/spam
+meta   BLOCK_PDF_TRADERBOT_GMAIL_SPAM    (__GMD_AUTHOR_MOBILE__ && __FROM_GMAIL__)
+score   BLOCK_PDF_TRADERBOT_GMAIL_SPAM  5.0
+
+endif
