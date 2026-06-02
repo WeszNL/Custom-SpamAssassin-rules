@@ -1,0 +1,33 @@
+########################################################################
+# Fake TransIP phishing campaign - Attempt to reduce the current wave of fake TransIP phishing emails reaching customers.
+# Some temporary dirty rules to detect common TransIP-themed phishing content, t.co shortener links, and non-official sender domains *.transip.nl *.transip.eu. Short-term mitigation until we fix our regular filters for current campaign
+########################################################################
+
+body    LOCAL_TRANSIP_BRAND          /\bTransIP\b/i
+body    LOCAL_TRANSIP_TEAM           /Team\s+TransIP/i
+body    LOCAL_TRANSIP_PANEL          /controlepaneel/i
+body    LOCAL_TRANSIP_VERIFY_TEXT    /e-mailadres.{0,160}mogelijk niet correct functioneert/i
+body    LOCAL_TRANSIP_SAFE_COMM      /betrouwbare en veilige communicatie centraal/i
+
+uri     LOCAL_TCO_LINK               /https?:\/\/t\.co\/[A-Za-z0-9]+/i
+
+header  LOCAL_FROM_TRANSIP_OFFICIAL  From =~ /@(?:[A-Za-z0-9-]+\.)*transip\.(?:nl|eu)\b/i
+
+score   LOCAL_TCO_LINK               4.0
+describe LOCAL_TCO_LINK              t.co shortener detected
+
+meta    LOCAL_FAKE_TRANSIP_TCO       (LOCAL_TRANSIP_BRAND && LOCAL_TCO_LINK && !LOCAL_FROM_TRANSIP_OFFICIAL)
+score   LOCAL_FAKE_TRANSIP_TCO       18.0
+describe LOCAL_FAKE_TRANSIP_TCO      Fake TransIP phishing using t.co
+
+meta    LOCAL_FAKE_TRANSIP_TEXT      (LOCAL_TRANSIP_TEAM && LOCAL_TRANSIP_PANEL && LOCAL_TRANSIP_VERIFY_TEXT && !LOCAL_FROM_TRANSIP_OFFICIAL)
+score   LOCAL_FAKE_TRANSIP_TEXT      15.0
+describe LOCAL_FAKE_TRANSIP_TEXT     Fake TransIP phishing text pattern
+
+meta    LOCAL_FAKE_TRANSIP_CAMPAIGN  (LOCAL_TRANSIP_BRAND && LOCAL_TRANSIP_PANEL && LOCAL_TRANSIP_SAFE_COMM && !LOCAL_FROM_TRANSIP_OFFICIAL)
+score   LOCAL_FAKE_TRANSIP_CAMPAIGN  12.0
+describe LOCAL_FAKE_TRANSIP_CAMPAIGN Fake TransIP phishing campaign
+
+########################################################################
+# Known fake sender domains seen in campaign
+########################################################################
