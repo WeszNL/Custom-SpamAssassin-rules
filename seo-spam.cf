@@ -3,18 +3,39 @@
 
 header   __SER_FROM_FREEMAIL          From =~ /\@(gmail|googlemail|outlook|hotmail|live|yahoo|icloud|aol|protonmail)\.com\b/i
 header   __SER_FROM_SEOISH_DOMAIN     From =~ /\b(?:seo|ranking|rank|web|website|design|digital|marketing|leads?|strategy|roi|wordpress)\b/i
+header   __SER_FROM_COLD_BIZ_DOMAIN   From =~ /\b(?:marketing|strategy|solutions?|technology|tech|digital|global|consult(?:ing|ancy)?|services?)\b/i
+header   __SER_SUBJ_COLD_FOLLOWUP     Subject =~ /^\s*(?:re|ref)\s*[:.\-]?\s*(?:follow\s*up|reminder|proposal|send|share|cost|pricing|marketing|build|redesign|sure|yes|co\b|$)/i
 header   __SER_SUBJ_FAKE_THREAD       Subject =~ /^\s*(?:re|fw|fwd)\s*[:.\-]?\s*(?:$|(?:proposal|quote|pricing|price|cost|plan|co|follow\s*up|reminder|any\s+thoughts|sure|share\s+plan|can\s+i\s+send|first\s+page|1st\s+page|google))/i
 header   __SER_SUBJ_SEO_GOOGLE        Subject =~ /\b(?:seo|google\s+(?:1st|first)\s+page|(?:1st|first)\s+page\s+(?:of|on)\s+google|more\s+customers\s+from\s+google|search\s+engine|rank(?:ing)?s?)\b/i
 header   __SER_SUBJ_WEB_PITCH         Subject =~ /\b(?:web(?:site)?\s+(?:design|redesign|development)|site\s+design|build\s+and\s+redesign|printing\s+business.*leads?|visitor\s+list|comprehensive\s+visitor\s+list)\b/i
 body     __SER_SEO_CORE               /\b(?:seo|search\s+engine\s+optimi[sz]ation|zoekmachineoptimalisatie|zoekmachine\s+optimalisatie|google\s+rankings?|search\s+results|zoekresultaten|organic\s+traffic|organisch\s+verkeer|meer\s+bezoekers|local\s+seo|lokale\s+seo|ai\s+search\s+results)\b/i
-body     __SER_GOOGLE_PAGE            /\b(?:first|1st)\s+page\s+(?:of|on)\s+google\b|\bgoogle'?s?\s+(?:first|1st)\s+page\b|\bpage\s*\#?\s*1\b|\bnot\s+(?:yet\s+)?ranking\s+on\s+google\b|\bnot\s+ranking\s+on\s+google\s+and\s+other\s+major\s+search\s+engines\b|\bhoger\s+(?:te\s+)?laten\s+scoren\b|\bhoger\s+scoren\s+in\s+(?:de\s+)?zoekresultaten\b/i
+body     __SER_GOOGLE_PAGE            /\b(?:first|1st)\s+page\s+(?:of|on)\s+google\b|\bgoogle'?s?\s+(?:first|1st)\s+page\b|\b(?:not\s+showing\s+up\s+on\s+)?page\s*\#?\s*1\b|\bnot\s+(?:yet\s+)?ranking\s+(?:well\s+)?on\s+google\b|\bnot\s+ranking\s+on\s+google\s+and\s+other\s+major\s+search\s+engines\b|\bhoger\s+(?:te\s+)?laten\s+scoren\b|\bhoger\s+scoren\s+in\s+(?:de\s+)?zoekresultaten\b/i
 body     __SER_LINK_BUILDING          /\b(?:pagerank|page\s+rank|link\s+equity|backlinks?|link\s+building|domain\s+authority|da\s+score|trust\s+flow|citation\s+flow|anchor\s+text|on[-\s]?page\s+seo|off[-\s]?page\s+seo)\b/i
 body     __SER_WEBSITE_PITCH          /\b(?:website\s+(?:design|designer|redesign|development|performance|speed)|build\s+a\s+new\s+website|redesign\s+your\s+website|shopify\s+&?\s*e-?commerce|landing\s+pages?)\b/i
-body     __SER_PROPOSAL_ASK           /\b(?:(?:may|can)\s+i\s+send|may\s+i\s+share|can\s+i\s+share|would\s+you\s+(?:like|be\s+open)|are\s+you\s+interested|interested\s+in\s+reviewing|open\s+to\s+receiving|shall\s+i\s+send|go\s+ahead\s+and\s+share|wilt\s+u|zou\s+u|mag\s+ik|kan\s+ik)\b.{0,120}\b(?:proposal|price|pricing|quote|quotation|cost|plan|details|audit|report|strategy|voorstel|prijs|prijzen|prijsdetails|offerte|kosten|resultaten|strategie)\b/i
+body     __SER_PROPOSAL_ASK           /\b(?:(?:may|can)\s+i\s+send|may\s+i\s+share|can\s+i\s+share|want\s+me\s+to\s+send|would\s+you\s+(?:like|be\s+open)|are\s+you\s+interested|interested\s+in\s+reviewing|open\s+to\s+receiving|shall\s+i\s+send|go\s+ahead\s+and\s+share|wilt\s+u|zou\s+u|mag\s+ik|kan\s+ik)\b.{0,120}\b(?:proposal|price|pricing|quote|quotation|cost|plan|details|audit|report|strategy|portfolio|breakdown|voorstel|prijs|prijzen|prijsdetails|offerte|kosten|resultaten|strategie|it)\b/i
 body     __SER_SHARE_PRICING          /\b(?:share|send|reviewing|receiving|look\s+at|take\s+a\s+look|send\s+over|bekijken|ontvangen|delen|sturen|toesturen)\b.{0,100}\b(?:pricing|proposal|price\s+list|quote|quotation|costing|audit|report|strategy|plan|prijsdetails|prijzen|prijs|voorstel|offerte|kosten|resultaten|strategie)\b|\b(?:pricing|proposal|price\s+list|quote|quotation|costing|audit|report|strategy|plan|prijsdetails|prijzen|prijs|voorstel|offerte|kosten|resultaten|strategie)\b.{0,100}\b(?:share|send|review|receiv|look|bekijk|ontvang|deel|stuur)\b/i
-body     __SER_COLD_FOUND_SITE        /\b(?:i\s+(?:came\s+across|found|reviewed|looked\s+at)\s+your\s+(?:website|site|details)|your\s+website\s+(?:looks\s+great|is\s+great)|noticed\s+(?:a\s+few\s+)?issues|affecting\s+your\s+visibility|quick\s+look\s+at\s+your\s+website)\b/i
+body     __SER_COLD_FOUND_SITE        /\b(?:i\s+(?:came\s+across|found|reviewed|looked\s+at)\s+your\s+(?:website|site|details)|(?:was\s+)?checking\s+out\s+your\s+(?:website|site)|your\s+website\s+(?:looks\s+great|is\s+great)|noticed\s+(?:a\s+few\s+)?issues|affecting\s+your\s+visibility|quick\s+look\s+at\s+your\s+website)\b/i
 body     __SER_LEAD_GEN_PITCH         /\b(?:lead\s+generation|generate\s+qualified\s+b2b\s+leads|visitor\s+list|attendee\s+list|email\s+list|decision\s+makers|high[-\s]?converting\s+lead[-\s]?generation|more\s+leads|more\s+customers|generating\s+more\s+leads|digital\s+marketing\s+for\s+printing)\b/i
 body     __SER_INDIAN_SEO_STYLE       /\b(?:business\s+executive\s*\|\|\s*seo\s+expert|seo\s+price\s*&\s*quote|seo\s+quote\s*&\s*price|seo\s+proposal\s+and\s+price\s+list|please\s+reply\s+my\s+last\s+email|still\s+waiting\s+for\s+your\s+response)\b/i
+body     __SER_GENERIC_COLD_OFFER     /\b(?:we\s+(?:are|offer|provide|help|speciali[sz]e)|i\s+(?:would\s+like|wanted)\s+to\s+(?:discuss|share)|(?:i(?:'ve|\x{2019}ve)\s+)?put\s+together.{0,40}\bproposal|our\s+(?:services|offerings|packages)|dedicated\s+(?:support|resources?)|customi[sz]ed\s+quotation|tailored\s+(?:solutions?|options?))\b/i
+body     __SER_GENERIC_COLD_CTA       /\b(?:if\s+you\s+are\s+interested|would\s+you\s+be\s+(?:interested|open)|please\s+(?:email|reply)\s+(?:us\s+)?back|suitable\s+(?:moment|time)|brief\s+(?:discussion|conversation)|quick\s+15[-\s]?minute\s+(?:call|conversation)|look(?:ing)?\s+forward\s+to\s+(?:hearing|connect(?:ing)?)|don(?:'|\x{2019})t\s+wait\s+for\s+(?:the\s+)?deadlines?)\b/i
+body     __SER_SEO_DIRECT_OFFER       /\b(?:would\s+you\s+like\s+to\s+optimi[sz]e\s+your\s+(?:site|website)|help\s+(?:get|bring)\s+your\s+(?:site|website).{0,80}(?:google|search\s+results?)|help\s+businesses\s+like\s+yours.{0,80}climb\s+the\s+rankings)\b/i
+body     __SER_FAKE_FOLLOWUP_BODY     /\b(?:any\s+update\s+(?:on\s+)?my\s+previous\s+message|still\s+awaiting\s+your\s+response|following\s+up\s+on\s+our\s+earlier\s+conversation|follow\s+up\s+on\s+my\s+previous\s+email|checking\s+if\s+you\s+saw\s+my\s+last\s+message|had\s+a\s+chance\s+to\s+review)\b/i
+body     __SER_PRINT_SUPPLY_CATALOG   /\b(?:wide\s+format\s+cartridges?|inkjet\s+cartridges?|plotters?|printer\s+consumables?|oem\s*\/\s*odm)\b/i
+body     __SER_PRODUCT_CATALOG_PITCH  /\b(?:latest\s+catalog\s+and\s+quote\s+list|temperature\s+(?:recorders?|indicators?)|(?:data\s+)?loggers?).{0,300}\b(?:catalog|quote\s+list)\b/i
+body     __SER_UNFILLED_TEMPLATE      /\[(?:your\s+name|company\s+name)\]/i
+body     __SER_COMPLIANCE_MARKETING   /\b(?:mandatory|compliance)\s+(?:deadline|readiness)|\be-?invoicing\s+(?:framework|service\s+provider|support)|\bprepare\s+now\b/i
+body     __SER_BRAND_ACCOUNT_ACTION   /\b(?:accountgegevens\s+(?:te\s+)?controleren|account\s+niet\s+op\s+tijd|toegang\s+tot\s+.{0,100}(?:beperkt|geblokkeerd)|verplichte\s+accountverificatie)\b/i
+header   __SER_COINMERCE_WRONG_DOMAIN From =~ /\bCoinmerce\b[^\r\n]*\@(?![a-z0-9.-]*coinmerce\.(?:com|io|nl)\b)[a-z0-9.-]+/i
+
+# Retail survey/sweepstakes lures. The brand alone is harmless; the rule
+# requires an unrelated sender domain plus the recurring prize-panel template.
+header   __SER_RETAIL_BRAND_SUBJ      Subject =~ /\b(?:Coolblue|ICI\s+Paris\s+XL|OTTO)\b/i
+body     __SER_RETAIL_BRAND_BODY      /\b(?:Coolblue|ICI\s+Paris\s+XL|OTTO)\b/i
+header   __SER_FROM_NOT_RETAIL_BRAND  From =~ /\@(?![a-z0-9.-]*(?:coolblue\.nl|iciparisxl\.nl|otto\.nl)\b)[a-z0-9.-]+/i
+body     __SER_PRIZE_PANEL_TEMPLATE   /\b(?:klantenpanel|beautypanel|voordeelpanel)\b.{0,500}\b(?:3|drie)\s+korte\s+vragen\b.{0,700}\bmaakt?\s+kans\b/i
+body     __SER_PRIZE_URGENCY          /\b(?:nog\s+\d+\s+plekken|sluit\s+vandaag|uitnodiging\s+(?:verloopt|sluit)|beperkt\s+aantal|zodra\s+(?:het\s+panel|ze)\s+.*(?:vol|weg))\b/i
+body     __SER_NOT_BRAND_AFFILIATED   /\bniet\s+gesponsord\s+door\s+of\s+gelieerd\s+aan\b/i
 
 meta     SER_SEO_GOOGLE_SOLICIT       (__SER_SEO_CORE && __SER_GOOGLE_PAGE && (__SER_PROPOSAL_ASK || __SER_SHARE_PRICING))
 describe SER_SEO_GOOGLE_SOLICIT       Cold SEO solicitation promising Google ranking/page placement
@@ -27,6 +48,10 @@ score    SER_SEO_LINK_SPAM_SOLICIT    4.0
 meta     SER_FREEMAIL_SEO_SOLICIT     (__SER_FROM_FREEMAIL && __SER_SEO_CORE && (__SER_PROPOSAL_ASK || __SER_SHARE_PRICING))
 describe SER_FREEMAIL_SEO_SOLICIT     Freemail sender making SEO proposal/quote solicitation
 score    SER_FREEMAIL_SEO_SOLICIT     3.0
+
+meta     SER_FREEMAIL_SEO_DIRECT      (__SER_FROM_FREEMAIL && (__SER_SEO_CORE || __SER_GOOGLE_PAGE) && __SER_COLD_FOUND_SITE && __SER_SEO_DIRECT_OFFER)
+describe SER_FREEMAIL_SEO_DIRECT      Freemail sender offers search optimization after a cold site review
+score    SER_FREEMAIL_SEO_DIRECT      4.0
 
 meta     SER_FAKE_THREAD_SEO          (__SER_SUBJ_FAKE_THREAD && (__SER_SEO_CORE || __SER_GOOGLE_PAGE || __SER_WEBSITE_PITCH) && (__SER_PROPOSAL_ASK || __SER_SHARE_PRICING || __SER_COLD_FOUND_SITE))
 describe SER_FAKE_THREAD_SEO          Fake reply/follow-up SEO or web design pitch
@@ -48,6 +73,40 @@ meta     SER_SEO_DOMAIN_SOLICIT       (__SER_FROM_SEOISH_DOMAIN && (__SER_SEO_CO
 describe SER_SEO_DOMAIN_SOLICIT       SEO/marketing-looking sender domain with cold pitch content
 score    SER_SEO_DOMAIN_SOLICIT       2.5
 
+# Generic outreach needs several independent clues. This catches new campaigns
+# without treating ordinary proposals or marketing newsletters as spam.
+meta     SER_COLD_BIZ_FOLLOWUP        (__SER_FAKE_FOLLOWUP_BODY && __SER_GENERIC_COLD_OFFER && (__SER_GENERIC_COLD_CTA || __SER_SHARE_PRICING || __SER_PROPOSAL_ASK) && (__SER_FROM_FREEMAIL || __SER_SUBJ_COLD_FOLLOWUP))
+describe SER_COLD_BIZ_FOLLOWUP        Fabricated follow-up in a cold business-services pitch
+score    SER_COLD_BIZ_FOLLOWUP        4.0
+
+meta     SER_COLD_BIZ_SOLICIT         (__SER_GENERIC_COLD_OFFER && __SER_GENERIC_COLD_CTA && (__SER_FROM_COLD_BIZ_DOMAIN || __SER_FROM_FREEMAIL) && (__SER_LEAD_GEN_PITCH || __SER_WEBSITE_PITCH || __SER_SHARE_PRICING || __SER_COMPLIANCE_MARKETING))
+describe SER_COLD_BIZ_SOLICIT         Multi-signal cold business-services solicitation
+score    SER_COLD_BIZ_SOLICIT         3.0
+
+meta     SER_PRINT_SUPPLY_TEMPLATE    (__SER_PRINT_SUPPLY_CATALOG && __SER_GENERIC_COLD_OFFER && __SER_GENERIC_COLD_CTA && __SER_UNFILLED_TEMPLATE)
+describe SER_PRINT_SUPPLY_TEMPLATE    Unfinished bulk template selling printing supplies
+score    SER_PRINT_SUPPLY_TEMPLATE    4.5
+
+meta     SER_COLD_PRODUCT_CATALOG     (__SER_PRODUCT_CATALOG_PITCH && __SER_GENERIC_COLD_OFFER && __SER_GENERIC_COLD_CTA)
+describe SER_COLD_PRODUCT_CATALOG     Cold product-catalog and quote solicitation
+score    SER_COLD_PRODUCT_CATALOG     3.5
+
+# Compliance announcements can be wanted, so this only adds weight to a
+# commercial call to action. It is intentionally not a standalone block.
+meta     SER_COMPLIANCE_SALES_PITCH   (__SER_COMPLIANCE_MARKETING && __SER_GENERIC_COLD_OFFER && __SER_GENERIC_COLD_CTA)
+describe SER_COMPLIANCE_SALES_PITCH   Cold compliance-services deadline pitch
+score    SER_COMPLIANCE_SALES_PITCH   2.5
+
+# A valid DKIM signature proves control of its own domain, not the displayed
+# brand. Keep this rule narrow until more impersonated brands are sampled.
+meta     SER_COINMERCE_IMPERSONATION  (__SER_COINMERCE_WRONG_DOMAIN && __SER_BRAND_ACCOUNT_ACTION)
+describe SER_COINMERCE_IMPERSONATION  Coinmerce account lure sent from an unrelated domain
+score    SER_COINMERCE_IMPERSONATION  6.0
+
+meta     SER_RETAIL_PRIZE_IMPERSONATION (__SER_FROM_NOT_RETAIL_BRAND && (__SER_RETAIL_BRAND_SUBJ || __SER_RETAIL_BRAND_BODY) && __SER_PRIZE_PANEL_TEMPLATE && (__SER_PRIZE_URGENCY || __SER_NOT_BRAND_AFFILIATED))
+describe SER_RETAIL_PRIZE_IMPERSONATION Retail-brand prize panel sent from an unrelated domain
+score    SER_RETAIL_PRIZE_IMPERSONATION 5.0
+
 meta     SER_FREEMAIL_FAKE_REPLY_BIZ  (__SER_FROM_FREEMAIL && __SER_SUBJ_FAKE_THREAD && (__SER_SEO_CORE || __SER_GOOGLE_PAGE || __SER_WEBSITE_PITCH || __SER_SHARE_PRICING || __SER_COLD_FOUND_SITE || DEAR_SOMETHING || TEQF_USR_POLITE) && (FREEMAIL_ENVFROM_END_DIGIT || HK_FREEMAIL_FROM || FREEMAIL_FROM))
 describe SER_FREEMAIL_FAKE_REPLY_BIZ  Freemail fake reply/follow-up business solicitation
 score    SER_FREEMAIL_FAKE_REPLY_BIZ  2.5
@@ -56,6 +115,6 @@ meta     SER_SUBJ_GOOGLE_PAGE_FROM_FREE (__SER_FROM_FREEMAIL && __SER_SUBJ_SEO_G
 describe SER_SUBJ_GOOGLE_PAGE_FROM_FREE Freemail sender with Google ranking SEO subject
 score    SER_SUBJ_GOOGLE_PAGE_FROM_FREE 2.5
 
-meta     SER_FULL_SEO_BLOCK           (SER_SEO_GOOGLE_SOLICIT || SER_SEO_LINK_SPAM_SOLICIT || (SER_FREEMAIL_SEO_SOLICIT && SER_FAKE_THREAD_SEO) || SER_INDIAN_SEO_TEMPLATE || (SER_FREEMAIL_FAKE_REPLY_BIZ && (__SER_SEO_CORE || __SER_GOOGLE_PAGE || __SER_WEBSITE_PITCH)))
+meta     SER_FULL_SEO_BLOCK           (SER_SEO_GOOGLE_SOLICIT || SER_SEO_LINK_SPAM_SOLICIT || SER_FREEMAIL_SEO_DIRECT || (SER_FREEMAIL_SEO_SOLICIT && SER_FAKE_THREAD_SEO) || SER_INDIAN_SEO_TEMPLATE || SER_COLD_BIZ_FOLLOWUP || (SER_FREEMAIL_FAKE_REPLY_BIZ && (__SER_SEO_CORE || __SER_GOOGLE_PAGE || __SER_WEBSITE_PITCH)))
 describe SER_FULL_SEO_BLOCK           Strong global SEO cold-outreach spam combination
 score    SER_FULL_SEO_BLOCK           2.0
